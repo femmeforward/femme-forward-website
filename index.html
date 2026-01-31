@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Femme Forward | Women-Led Podcast Network</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- ================= EMAILJS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("gip5miJ-t27Ualg47"); /* 🔁 replace */
+  })();
+</script>
+
+<style>
+:root{
+  --rose-dark:#9a6f6f;
+  --rose-mid:#e6bcbc;
+  --rose-light:#f5e3e1;
+  --beige:#fbf4f3;
+  --charcoal:#2f2a2a;
+  --muted:#8a7f7f;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:var(--beige);
+  color:var(--charcoal);
+  line-height:1.55;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:0 1.2rem;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.8rem 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+.brand-logo{width:34px;height:34px}
+
+.desktop-nav ul{
+  display:flex;
+  list-style:none;
+  gap:1.2rem;
+  margin:0;
+  padding:0;
+}
+.desktop-nav a{font-weight:600}
+.desktop-nav a:hover{color:var(--rose-dark)}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:10px;
+}
+
+.nav-cta{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+  font-weight:600;
+}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{
+  display:none;
+}
+@media(max-width:719px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .mobile-nav{
+    position:absolute;
+    top:64px;
+    right:12px;
+    width:calc(100% - 24px);
+    max-width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    padding:1rem;
+    display:none;
+    flex-direction:column;
+    gap:.9rem;
+    z-index:999;
+  }
+  .mobile-nav.active{display:flex}
+  .mobile-nav a:hover{
+    background:var(--rose-light);
+    color:var(--rose-dark);
+  }
+}
+
+/* ===== HERO ===== */
+.hero{
+  background:radial-gradient(circle at top left,#f7e1df,var(--beige) 60%,#efd3cf);
+  padding:3.8rem 0 3.2rem;
+}
+.hero-copy{
+  max-width:560px;
+  text-align:center;
+  margin:auto;
+}
+.hero-kicker{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  background:#ffffffcc;
+  padding:.35rem .9rem;
+  border-radius:999px;
+  display:inline-block;
+  margin-bottom:1rem;
+}
+.hero-actions{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  margin-top:1.6rem;
+}
+.btn-primary,.btn-secondary{
+  padding:.75rem 1.5rem;
+  border-radius:999px;
+  font-weight:600;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+}
+.btn-secondary{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.12);
+}
+.hero-divider{
+  width:80px;
+  height:2px;
+  background:var(--rose-mid);
+  margin:2.2rem auto 1.4rem;
+  border-radius:10px;
+}
+.hero-meta{
+  display:flex;
+  justify-content:center;
+  gap:1.6rem;
+  font-size:.85rem;
+  color:var(--muted);
+}
+.hero-meta strong{color:var(--rose-dark)}
+
+/* ===== SLIDER ===== */
+.ff-slider{padding:3rem 0;background:#fff}
+.slider-container{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+}
+.slide{display:none}
+.slide.active{display:block}
+.slide img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+}
+.slide-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.1));
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:1.8rem;
+  color:#fff;
+}
+.slider-dots{
+  position:absolute;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:.5rem;
+}
+.dot{
+  width:8px;
+  height:8px;
+  background:rgba(255,255,255,.5);
+  border-radius:50%;
+  cursor:pointer;
+}
+.dot.active{background:#fff}
+
+/* ===== SECTIONS ===== */
+section{padding:3rem 0}
+.section-intro{
+  max-width:560px;
+  color:var(--muted);
+}
+.highlight-box{
+  margin-top:1.5rem;
+  background:#fff;
+  padding:1.4rem;
+  border-radius:14px;
+  box-shadow:0 8px 28px rgba(0,0,0,.06);
+}
+
+/* ===== REELS ===== */
+.reels-grid{
+  margin-top:1.6rem;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.3rem;
+}
+@media(min-width:720px){
+  .reels-grid{grid-template-columns:repeat(3,1fr)}
+}
+.reel-card{
+  background:#fff;
+  padding:1.2rem;
+  border-radius:18px;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+.reel-embed-wrapper{
+  position:relative;
+  padding-top:177%;
+  overflow:hidden;
+  border-radius:16px;
+}
+.reel-embed-wrapper iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* ===== NEWSLETTER ===== */
+.newsletter{
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  color:#fff;
+  border-radius:18px;
+  padding:1.8rem;
+  display:grid;
+  gap:1rem;
+}
+.newsletter form{
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+}
+.newsletter input{
+  padding:.6rem .9rem;
+  border-radius:999px;
+  border:none;
+  flex:1;
+}
+.newsletter button{
+  padding:.6rem 1.2rem;
+  border-radius:999px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);
+  color:#fff;
+  padding:2rem 0 1.4rem;
+}
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.footer-links a{color:rgba(255,255,255,.75)}
+
+/* ===== WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:9999;
+}
+.whatsapp-float img{
+  width:28px;
+  filter:brightness(0) invert(1);
+}
+
+/* ===== MOBILE HEADER FIX ===== */
+@media (max-width: 719px) {
+  .nav-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    margin-left: 0;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+  <a class="brand" href="#">
+    <img src="assets/logo-femme-forward.png" class="brand-logo">
+    <span>Femme Forward</span>
+  </a>
+
+  <nav class="desktop-nav">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="impact.html">Impact</a></li>
+      <li><a href="episodes.html">Episodes</a></li>
+      <li><a href="guests.html">Guests</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <nav class="mobile-nav">
+    <a href="about.html">About</a>
+    <a href="impact.html">Impact</a>
+    <a href="episodes.html">Episodes</a>
+    <a href="guests.html">Guests</a>
+    <a href="community.html">Community</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div>
+    <a href="#" class="nav-cta">Listen now</a>
+    <button class="menu-toggle"><span></span><span></span><span></span></button>
+  </div>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+  <div class="hero-copy">
+    <div class="hero-kicker">Women-Led • Story-Driven • Real</div>
+    <h1>Amplifying women who move the world forward.</h1>
+    <p>Honest, unfiltered conversations with women rewriting the rules.</p>
+
+    <div class="hero-actions">
+      <a href="episodes.html" class="btn-primary">Start Listening</a>
+      <a href="contact.html" class="btn-secondary">Be a Guest / Partner</a>
+    </div>
+
+    <div class="hero-divider"></div>
+
+    <div class="hero-meta">
+      <span><strong>Weekly</strong> episodes</span>
+      <span><strong>Diverse</strong> voices</span>
+      <span><strong>Zero</strong> clichés</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= IMAGE SLIDER ================= -->
+<section class="ff-slider">
+  <div class="slider-container">
+
+    <div class="slide active">
+      <img src="assets/slides/slide1.jpg" alt="Femme Forward – Women-led conversations">
+      <div class="slide-overlay">
+        <h2>Women-led conversations</h2>
+        <p>Stories told without shrinking.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="assets/slides/slide2.jpg" alt="Femme Forward – Unfiltered voices">
+      <div class="slide-overlay">
+        <h2>Unfiltered voices</h2>
+        <p>Honesty over performance.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="assets/slides/slide3.jpg" alt="Femme Forward – Power and leadership">
+      <div class="slide-overlay">
+        <h2>Power & leadership</h2>
+        <p>From politics to purpose.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="assets/slides/slide4.jpg" alt="Femme Forward – Culture and identity">
+      <div class="slide-overlay">
+        <h2>Culture & identity</h2>
+        <p>Stories that shape who we are.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="assets/slides/slide5.jpg" alt="Femme Forward – Impact beyond the mic">
+      <div class="slide-overlay">
+        <h2>Impact beyond the mic</h2>
+        <p>A movement, not just a podcast.</p>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section>
+  <div class="container">
+    <h2>Why Femme Forward exists</h2>
+    <p class="section-intro">
+      Representation is not a trend. It’s a responsibility.
+      Femme Forward exists to create space where women can speak
+      without shrinking and stories are never edited into soundbites.
+    </p>
+
+    <div class="highlight-box">
+      <strong>Our promise:</strong>
+      Every conversation leaves you with a new perspective, a practical
+      takeaway, or the reassurance that you’re not alone — sometimes all three.
+    </div>
+  </div>
+</section>
+
+<!-- ================= REELS ================= -->
+<section>
+  <div class="container">
+    <h2>Watch the stories in motion</h2>
+    <p class="section-intro">
+      Bite-sized moments from long-form conversations — crafted to travel,
+      resonate, and spark reflection.
+    </p>
+
+    <div class="reels-grid">
+      <div class="reel-card">
+        <div class="reel-title">On courage & starting again</div>
+        <div class="reel-note">Reinvention and self-belief.</div>
+        <div class="reel-embed-wrapper">
+          <iframe src="https://www.instagram.com/reel/DHqb5LhBGHT/embed" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-title">Power, politics, and voice</div>
+        <div class="reel-note">Navigating power with values.</div>
+        <div class="reel-embed-wrapper">
+          <iframe src="https://www.instagram.com/reel/DS4ihdWkQHu/embed" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-title">Quiet leadership, loud impact</div>
+        <div class="reel-note">Leading without shouting.</div>
+        <div class="reel-embed-wrapper">
+          <iframe src="https://www.instagram.com/reel/DStdwfAgWDO/embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section>
+  <div class="container">
+    <div class="newsletter">
+      <div>
+        <h3>Stay in the loop.</h3>
+        <p>One powerful story, one honest insight, every week.</p>
+      </div>
+      <form id="newsletter-form">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Join the list</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Femme Forward</strong>
+      <p style="margin:0.3rem 0 0; max-width:320px;">
+        A women-led podcast network amplifying stories that deserve more than a soundbite.
+      </p>
+    </div>
+
+    <div>
+     <div class="footer-links">
+       <a href="about.html">About</a>
+       <a href="impact.html">Impact</a>
+       <a href="episodes.html">Episodes</a>
+       <a href="guests.html">Guests</a>
+       <a href="community.html">Community</a>
+       <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-meta" style="margin-top:0.7rem;">
+        © 2025 Femme Forward. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- WhatsApp Floating Button -->
+<a
+  href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const burger=document.querySelector(".menu-toggle");
+  const mobileNav=document.querySelector(".mobile-nav");
+  burger.onclick=()=>mobileNav.classList.toggle("active");
+});
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    /* ===== Slider ===== */
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach(s => s.classList.remove("active"));
+      dots.forEach(d => d.classList.remove("active"));
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        current = i;
+        showSlide(current);
+      });
+    });
+
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 5000);
+
+  });
+</script>
+
+<script>
+document.getElementById("newsletter-form")?.addEventListener("submit",function(e){
+  e.preventDefault();
+  emailjs.send("service_l774319","template_0crn5g5",{
+    email:this.email.value
+  }).then(()=>alert("Subscribed successfully"));
+});
+</script>
+
+</body>
+</html>

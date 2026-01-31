@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Contact | Femme Forward</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+:root{
+  --rose-dark:#9a6f6f;
+  --rose-mid:#e6bcbc;
+  --rose-light:#f5e3e1;
+  --rose-powder:#f7ecef;
+  --beige:#fbf4f3;
+  --charcoal:#2f2a2a;
+  --muted:#8a7f7f;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:var(--beige);
+  color:var(--charcoal);
+  line-height:1.55;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:0 1.2rem;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.8rem 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+
+.brand-logo{width:34px}
+
+.desktop-nav ul{
+  list-style:none;
+  display:flex;
+  gap:1.2rem;
+  margin:0;
+  padding:0;
+}
+
+.desktop-nav a{font-weight:600}
+.desktop-nav a:hover{color:var(--rose-dark)}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.nav-cta{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+  font-weight:600;
+  font-size:.9rem;
+}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:10px;
+}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{display:none}
+
+@media(max-width:719px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .nav-cta{display:none}
+
+  .mobile-nav{
+    position:absolute;
+    top:64px;
+    right:12px;
+    width:calc(100% - 24px);
+    max-width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    padding:1rem;
+    display:none;
+    flex-direction:column;
+    gap:.9rem;
+    z-index:999;
+  }
+
+  .mobile-nav.active{display:flex}
+
+  .mobile-nav a{
+    font-weight:600;
+    padding:.6rem;
+    border-radius:10px;
+  }
+
+  .mobile-nav a:hover{
+    background:var(--rose-light);
+    color:var(--rose-dark);
+  }
+}
+
+/* ===== SECTION ===== */
+section{padding:3rem 0}
+
+.badge{
+  display:inline-block;
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border:1px solid rgba(0,0,0,.1);
+  padding:.3rem .7rem;
+  border-radius:999px;
+  color:var(--muted);
+  margin-bottom:.6rem;
+}
+
+.section-intro{
+  max-width:600px;
+  color:var(--muted);
+  margin-bottom:2rem;
+}
+
+/* ===== CONTACT ===== */
+.contact-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:2rem;
+  margin-top:2rem;
+}
+
+@media(min-width:720px){
+  .contact-layout{
+    grid-template-columns:1.1fr 1fr;
+    align-items:start;
+  }
+}
+
+.contact-card{
+  background:#fff;
+  padding:1.6rem;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
+}
+
+.contact-form-row{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:1rem;
+}
+
+label{
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin-bottom:.3rem;
+}
+
+input,textarea{
+  padding:.6rem .8rem;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.12);
+  font-family:inherit;
+  font-size:.95rem;
+}
+
+textarea{resize:vertical}
+
+.contact-submit-btn{
+  width:100%;
+  margin-top:.6rem;
+  padding:.7rem;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+}
+
+.contact-helper-text{
+  margin-top:.6rem;
+  font-size:.8rem;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);
+  color:#fff;
+  padding:2rem 0 1.4rem;
+  margin-top:3rem;
+}
+
+.footer-inner{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.footer-links a{color:rgba(255,255,255,.75)}
+
+/* ===== WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:9999;
+}
+
+.whatsapp-float img{
+  width:28px;
+  filter:brightness(0) invert(1);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-femme-forward.png" class="brand-logo" alt="Femme Forward">
+      <span>Femme Forward</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="episodes.html">Episodes</a></li>
+        <li><a href="guests.html">Guests</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="#" style="color:var(--rose-dark);">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="mobile-nav">
+      <a href="about.html">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="guests.html">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="episodes.html" class="nav-cta">Listen now</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="badge">Contact</div>
+    <h2>Share your story. Collaborate with us.</h2>
+
+    <p class="section-intro">
+      Whether you’re a potential guest, a brand, or a listener with a powerful story —
+      this is where it starts.
+    </p>
+
+    <div class="contact-layout">
+
+      <div>
+        <h3>Say hello to Femme Forward</h3>
+        <p>
+          We read every message personally. If you’re reaching out about speaking on
+          the show or partnerships, tell us why this feels like the right fit.
+        </p>
+
+        <p style="font-size:.9rem;color:var(--muted);">
+          Or write directly to <strong>smriti@femmeforward.in</strong>
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <form id="contact-form">
+          <input type="hidden" name="time" id="contact-time">
+
+          <div class="contact-form-row">
+            <label>Name</label>
+            <input type="text" name="name" required>
+          </div>
+
+          <div class="contact-form-row">
+            <label>Email</label>
+            <input type="email" name="email" required>
+          </div>
+
+          <div class="contact-form-row">
+            <label>Subject</label>
+            <input type="text" name="title" required>
+          </div>
+
+          <div class="contact-form-row">
+            <label>Message</label>
+            <textarea name="message" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="contact-submit-btn">Send message</button>
+          <div class="contact-helper-text">We usually respond within 2–3 working days.</div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <strong>Femme Forward</strong>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="guests.html">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div style="font-size:.85rem;opacity:.7;">© 2025 Femme Forward</div>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a
+  href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+</a>
+
+<script>
+emailjs.init("gip5miJ-t27Ualg47");
+
+document.getElementById("contact-time").value =
+  new Date().toLocaleString();
+
+document.getElementById("contact-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  emailjs.sendForm("service_l774319","template_801ft7v",this)
+    .then(()=>{
+      alert("Message sent successfully. Thank you!");
+      this.reset();
+    })
+    .catch(()=>{
+      alert("Something went wrong. Please try again.");
+    });
+});
+
+document.addEventListener("DOMContentLoaded",()=>{
+  const burger=document.querySelector(".menu-toggle");
+  const mobileNav=document.querySelector(".mobile-nav");
+  burger.onclick=()=>mobileNav.classList.toggle("active");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About | Femme Forward</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<style>
+:root{
+  --rose-dark:#9a6f6f;
+  --rose-mid:#e6bcbc;
+  --rose-light:#f5e3e1;
+  --rose-powder:#f7ecef;
+  --beige:#fbf4f3;
+  --charcoal:#2f2a2a;
+  --muted:#8a7f7f;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:var(--beige);
+  color:var(--charcoal);
+  line-height:1.55;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:0 1.2rem;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.8rem 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+
+.brand-logo{width:34px;height:34px}
+
+.desktop-nav ul{
+  display:flex;
+  list-style:none;
+  gap:1.2rem;
+  margin:0;
+  padding:0;
+}
+
+.desktop-nav a{font-weight:600}
+.desktop-nav a:hover{color:var(--rose-dark)}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.nav-cta{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+  font-weight:600;
+  font-size:.9rem;
+}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:10px;
+}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{display:none}
+
+@media(max-width:719px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .nav-cta{display:none}
+
+  .mobile-nav{
+    position:absolute;
+    top:64px;
+    right:12px;
+    width:calc(100% - 24px);
+    max-width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    padding:1rem;
+    display:none;
+    flex-direction:column;
+    gap:.9rem;
+    z-index:999;
+  }
+
+  .mobile-nav.active{display:flex}
+
+  .mobile-nav a{
+    font-weight:600;
+    padding:.6rem;
+    border-radius:10px;
+  }
+
+  .mobile-nav a:hover{
+    background:var(--rose-light);
+    color:var(--rose-dark);
+  }
+}
+
+/* ===== SECTIONS ===== */
+section{padding:3rem 0}
+
+h2{font-size:1.7rem;margin-bottom:.4rem}
+
+.section-intro{
+  max-width:560px;
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.two-column{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.8rem;
+  margin-top:1.6rem;
+}
+
+@media(min-width:720px){
+  .two-column{grid-template-columns:1.2fr 1fr}
+}
+
+.highlight-box{
+  background:#fff;
+  border-radius:14px;
+  padding:1.4rem;
+  box-shadow:0 8px 28px rgba(0,0,0,.06);
+}
+
+.pill-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin-top:.8rem;
+}
+
+.pill-list span{
+  font-size:.8rem;
+  padding:.25rem .6rem;
+  border-radius:999px;
+  background:var(--rose-powder);
+  border:1px solid rgba(0,0,0,.06);
+}
+
+
+/* ===== FOUNDER ===== */
+.badge{
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  display:inline-block;
+  padding:.25rem .6rem;
+  border-radius:999px;
+  background:var(--rose-powder);
+  color:var(--muted);
+  margin-bottom:.8rem;
+}
+
+.founder-card{
+  background:#fff;
+  border-radius:18px;
+  padding:1.8rem;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
+}
+
+.founder-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.6rem;
+  align-items:center;
+}
+
+@media(min-width:720px){
+  .founder-layout{grid-template-columns:.9fr 1.4fr}
+}
+
+.founder-photo{
+  width:180px;
+  height:180px;
+  border-radius:999px;
+  object-fit:cover;
+  border:4px solid var(--rose-light);
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+.founder-name{font-size:1.4rem;font-weight:700;margin:0}
+
+.founder-tagline{
+  font-size:.9rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-top:.3rem;
+}
+
+.founder-quote{
+  margin-top:1rem;
+  padding-left:.9rem;
+  border-left:3px solid var(--rose-mid);
+  font-style:italic;
+}
+
+.founder-quote span{
+  display:block;
+  font-size:.8rem;
+  margin-top:.4rem;
+  color:var(--muted);
+  font-style:normal;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);
+  color:#fff;
+  padding:2rem 0 1.4rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.footer-links a{color:rgba(255,255,255,.75)}
+
+/* ===== WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:9999;
+}
+
+.whatsapp-float img{
+  width:28px;
+  filter:brightness(0) invert(1);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-femme-forward.png" class="brand-logo">
+      <span>Femme Forward</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="#" style="color:var(--rose-dark);">About</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="episodes.html">Episodes</a></li>
+        <li><a href="guests.html">Guests</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="mobile-nav">
+      <a href="#">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="guests.html">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="episodes.html" class="nav-cta">Listen now</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WHY ================= -->
+<section>
+  <div class="container">
+    <h2>Why Femme Forward exists</h2>
+
+    <p class="section-intro">
+      Representation is not a trend. It’s a responsibility.
+      We built Femme Forward to create a space where women can speak
+      without shrinking, share without filters, and be heard without interruption.
+    </p>
+
+    <div class="two-column">
+      <div>
+        <h3>What we talk about</h3>
+        <p>
+          Each episode dives into the real stories behind the highlight reels:
+          ambition and burnout, identity and belonging, money and power,
+          failure and starting over. No performance. No perfection.
+          Just women telling the truth.
+        </p>
+
+        <div class="pill-list">
+          <span>Leadership</span>
+          <span>Entrepreneurship</span>
+          <span>Career pivot stories</span>
+          <span>Body & identity</span>
+          <span>Art & creativity</span>
+          <span>Social change</span>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Our promise:</strong>
+        every conversation leaves you with a new perspective,
+        a practical takeaway, or the reassurance that you’re not alone.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= FOUNDER ================= -->
+<section>
+  <div class="container">
+    <div class="badge">Meet the founder</div>
+
+    <div class="founder-card">
+      <div class="founder-layout">
+        <img src="https://image2url.com/images/1765201781156-983de00c-d0d2-47e2-80f6-796ded1ff6cd.png"
+             class="founder-photo"
+             alt="Smriti Agarwal">
+
+        <div>
+          <h3 class="founder-name">Smriti Agarwal</h3>
+          <div class="founder-tagline">Storyteller | Marketer | Creative Voice</div>
+
+          <p class="founder-summary-mobile">
+            Smriti is a storyteller and brand strategist building spaces
+            where women speak without filters.
+          </p>
+
+          <p class="founder-bio-full">
+            Smriti Agarwal is a storyteller and brand strategist with
+            an MSc in Marketing (Northumbria University, UK)
+            and a BA (Hons) in English (Delhi University).
+          </p>
+
+          <div class="founder-quote">
+            “To spark a movement where women's stories inspire confidence and courage.”
+            <span>— Smriti Agarwal</span>
+          </div>
+
+          <div class="founder-meta-list">
+            <span>MSc Marketing (UK)</span>
+            <span>BA (Hons) English</span>
+            <span>Brand Strategist</span>
+            <span>Host, Femme Forward</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container footer-inner">
+    <strong>Femme Forward</strong>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Impact</a>
+      <a href="#">Episodes</a>
+      <a href="#">Guests</a>
+      <a href="#">Community</a>
+      <a href="#">Contact</a>
+    </div>
+    <div style="font-size:.85rem;opacity:.7;">© 2025 Femme Forward</div>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a
+  href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+</a>
+
+<!-- ================= INLINE JS ================= -->
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const burger=document.querySelector(".menu-toggle");
+  const mobileNav=document.querySelector(".mobile-nav");
+  burger.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+});
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Guests | Femme Forward</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<style>
+:root{
+  --rose-dark:#9a6f6f;
+  --rose-mid:#e6bcbc;
+  --rose-light:#f5e3e1;
+  --rose-powder:#f7ecef;
+  --beige:#fbf4f3;
+  --charcoal:#2f2a2a;
+  --muted:#8a7f7f;
+
+  --cinema:#f6e6ea;
+  --politics:#f7eddc;
+  --media:#eef3f8;
+  --gender:#f1ecf7;
+  --international:#ecf6f2;
+  --defence:#f7e8e3;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:var(--beige);
+  color:var(--charcoal);
+  line-height:1.55;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:0 1.2rem;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.8rem 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+
+.brand-logo{width:34px}
+
+.desktop-nav ul{
+  list-style:none;
+  display:flex;
+  gap:1.2rem;
+  margin:0;
+  padding:0;
+}
+
+.desktop-nav a{font-weight:600}
+.desktop-nav a:hover{color:var(--rose-dark)}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.nav-cta{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+  font-weight:600;
+  font-size:.9rem;
+}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:10px;
+}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{display:none}
+
+@media(max-width:719px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .nav-cta{display:none}
+
+  .mobile-nav{
+    position:absolute;
+    top:64px;
+    right:12px;
+    width:calc(100% - 24px);
+    max-width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    padding:1rem;
+    display:none;
+    flex-direction:column;
+    gap:.9rem;
+    z-index:999;
+  }
+
+  .mobile-nav.active{display:flex}
+
+  .mobile-nav a{
+    font-weight:600;
+    padding:.6rem;
+    border-radius:10px;
+  }
+
+  .mobile-nav a:hover{
+    background:var(--rose-light);
+    color:var(--rose-dark);
+  }
+}
+
+/* ===== SECTION ===== */
+section{padding:3rem 0}
+
+.badge{
+  display:inline-block;
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border:1px solid rgba(0,0,0,.1);
+  padding:.3rem .7rem;
+  border-radius:999px;
+  color:var(--muted);
+  margin-bottom:.6rem;
+}
+
+.section-intro{
+  max-width:640px;
+  color:var(--muted);
+  margin-bottom:2rem;
+}
+
+/* ===== GUEST CATEGORIES ===== */
+.guest-category{
+  margin-bottom:2.6rem;
+  padding:1.6rem 1.4rem;
+  border-radius:18px;
+}
+
+.cinema{background:linear-gradient(135deg,#fff,var(--cinema))}
+.politics{background:linear-gradient(135deg,#fff,var(--politics))}
+.media{background:linear-gradient(135deg,#fff,var(--media))}
+.gender{background:linear-gradient(135deg,#fff,var(--gender))}
+.international{background:linear-gradient(135deg,#fff,var(--international))}
+.defence{background:linear-gradient(135deg,#fff,var(--defence))}
+
+.guest-category-title{
+  font-size:1.25rem;
+  font-weight:700;
+}
+
+.guest-category-tag{
+  font-size:.85rem;
+  color:var(--muted);
+  margin-bottom:1.2rem;
+}
+
+.guest-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  align-items: stretch;
+}
+
+/* Tablet */
+@media (max-width: 1023px){
+  .guest-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 719px){
+  .guest-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.guest-card{
+  background:#fff;
+  padding:1.2rem;
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+.guest-card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.guest-name{
+  margin:0;
+  font-size:1rem;
+  font-weight:700;
+}
+
+.guest-name a:hover{color:var(--rose-dark)}
+
+.guest-role{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin:.3rem 0;
+}
+
+.guest-note{font-size:.9rem}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);
+  color:#fff;
+  padding:2rem 0 1.4rem;
+  margin-top:3rem;
+}
+
+.footer-inner{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.footer-links{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.footer-links a{color:rgba(255,255,255,.75)}
+
+/* ===== WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:9999;
+}
+
+.whatsapp-float img{
+  width:28px;
+  filter:brightness(0) invert(1);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-femme-forward.png" class="brand-logo" alt="Femme Forward">
+      <span>Femme Forward</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="episodes.html">Episodes</a></li>
+        <li><a href="#" style="color:var(--rose-dark);">Guests</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="mobile-nav">
+      <a href="about.html">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="#">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="episodes.html" class="nav-cta">Listen now</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="badge">Powerful voices</div>
+    <h2>Our distinguished guests</h2>
+
+    <p class="section-intro">
+      Trailblazers from cinema, politics, media, law, defence, and healthcare —
+      sharing their unfiltered journeys, lived wisdom, and hard-earned truths.
+    </p>
+
+    <!-- CINEMA -->
+    <div class="guest-category cinema">
+      <div class="guest-category-title">Cinema & Entertainment</div>
+      <div class="guest-category-tag">Stories on screen and beyond</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=mlAU6FoxaJg" target="_blank">Neelam Kothari Soni</a></h3>
+          <div class="guest-role">Actress & Entrepreneur</div>
+          <div class="guest-note">A journey of reinvention, legacy, and self-discovery.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=-QMrZIBmKQQ" target="_blank">Vani Tripathi Tikoo</a></h3>
+          <div class="guest-role">Actor, Author, CBFC Member</div>
+          <div class="guest-note">Cinema, culture, and women’s narratives at Cannes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLITICS -->
+    <div class="guest-category politics">
+      <div class="guest-category-title">Politics & Leadership</div>
+      <div class="guest-category-tag">Power, policy, and public life</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=qJ90k2QxPB8" target="_blank">Maneka Gandhi</a></h3>
+          <div class="guest-role">Veteran Politician & Animal Rights Leader</div>
+          <div class="guest-note">Leadership, legacy, and compassion in public life.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://youtu.be/_UqrITrsrXA" target="_blank">Priyanka Chaturvedi</a></h3>
+          <div class="guest-role">Member of Parliament, Rajya Sabha</div>
+          <div class="guest-note">When violence is joked about in Parliament, safety becomes a privilege.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=F2_kd11jjD4" target="_blank">Radhika Khera</a></h3>
+          <div class="guest-role">National Spokesperson, BJP</div>
+          <div class="guest-note">Sanatan values, leadership, and public responsibility.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=pErWj1PcTU4" target="_blank">Shazia Ilmi</a></h3>
+          <div class="guest-role">Political Leader</div>
+          <div class="guest-note">Security, Kashmir, and women in complex political spaces.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=WTyyubISE6E" target="_blank">Supriya Aron</a></h3>
+          <div class="guest-role">Former Mayor of Bareilly</div>
+          <div class="guest-note">Grassroots leadership and political empowerment.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="guest-category media">
+      <div class="guest-category-title">Media & Journalism</div>
+      <div class="guest-category-tag">Truth, narrative, and newsroom leadership</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/@FemmeForwardOfficial" target="_blank">Sonia Singh</a></h3>
+          <div class="guest-role">Former Editorial Director, NDTV</div>
+          <div class="guest-note">Truth and resilience in newsroom leadership.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=erWnoFvogyU" target="_blank">Shaili Chopra</a></h3>
+          <div class="guest-role">Founder, SheThePeople & Gytree</div>
+          <div class="guest-note">From 26/11 reporting to building women’s networks.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=dl2XuNr0SMg" target="_blank">Pallavi Ghosh</a></h3>
+          <div class="guest-role">Senior Editor, CNN-News18</div>
+          <div class="guest-note">Politics and power from the heart of the newsroom.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENDER -->
+    <div class="guest-category gender">
+      <div class="guest-category-title">Gender, Law & Justice</div>
+      <div class="guest-category-tag">Rights, safety, and accountability</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=wkfE3E9cWbo" target="_blank">Yogita Bhayana</a></h3>
+          <div class="guest-role">Activist, Founder PARI</div>
+          <div class="guest-note">Survivor stories and the realities of justice.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=8lgncP_JYg8" target="_blank">Seema Rajput Verma</a></h3>
+          <div class="guest-role">UN Gender Equality Expert</div>
+          <div class="guest-note">Stalking laws and gender justice in lived reality.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=VvKxueCvz_s" target="_blank">Manjari Jaruhar</a></h3>
+          <div class="guest-role">First Lady IPS of Bihar</div>
+          <div class="guest-note">Resilience and leadership through tough chapters.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERNATIONAL -->
+    <div class="guest-category international">
+      <div class="guest-category-title">International Affairs & Healthcare</div>
+      <div class="guest-category-tag">Global lens, human impact</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/@FemmeForwardOfficial" target="_blank">Dr. Swasti Rao</a></h3>
+          <div class="guest-role">Geopolitical Advisor, Ministry of Defence</div>
+          <div class="guest-note">Making global power accessible — and why it matters.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=m2EFUnz7r4o" target="_blank">Upasana Arora</a></h3>
+          <div class="guest-role">Healthcare Leader</div>
+          <div class="guest-note">Patient-first leadership and empathy in healthcare.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFENCE -->
+    <div class="guest-category defence">
+      <div class="guest-category-title">Defence & Adventure</div>
+      <div class="guest-category-tag">Courage, discipline, and daring</div>
+      <div class="guest-grid">
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=bXi1BiKx1Zw" target="_blank">Geeta Samota</a></h3>
+          <div class="guest-role">First CISF Woman to Summit Everest</div>
+          <div class="guest-note">Resilience and courage on the mountain and in life.</div>
+        </div>
+        <div class="guest-card">
+          <h3 class="guest-name"><a href="https://www.youtube.com/watch?v=O6LiJw9Gryo" target="_blank">Angelina Josh</a></h3>
+          <div class="guest-role">Wing Commander (Retd.), Mrs India 2024</div>
+          <div class="guest-note">Reinvention without losing one’s core.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <strong>Femme Forward</strong>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="guests.html">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div style="font-size:.85rem;opacity:.7;">© 2025 Femme Forward</div>
+  </div>
+</footer>
+<!-- WhatsApp Floating Button -->
+<a
+  href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const burger=document.querySelector(".menu-toggle");
+  const mobileNav=document.querySelector(".mobile-nav");
+  burger.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+});
+</script>
+
+</body>
+</html>

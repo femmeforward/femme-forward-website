@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Impact | Femme Forward</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<style>
+:root{
+  --rose-dark:#9a6f6f;
+  --rose-mid:#e6bcbc;
+  --rose-light:#f5e3e1;
+  --rose-powder:#f7ecef;
+  --beige:#fbf4f3;
+  --charcoal:#2f2a2a;
+  --muted:#8a7f7f;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:var(--beige);
+  color:var(--charcoal);
+  line-height:1.55;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:0 1.2rem;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.8rem 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+
+.brand-logo{width:34px;height:34px}
+
+.desktop-nav ul{
+  list-style:none;
+  display:flex;
+  gap:1.2rem;
+  margin:0;
+  padding:0;
+}
+
+.desktop-nav a{font-weight:600}
+.desktop-nav a:hover{color:var(--rose-dark)}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.nav-cta{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-light));
+  color:#fff;
+  font-weight:600;
+  font-size:.9rem;
+}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:10px;
+}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{display:none}
+
+@media(max-width:719px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .nav-cta{display:none}
+
+  .mobile-nav{
+    position:absolute;
+    top:64px;
+    right:12px;
+    width:calc(100% - 24px);
+    max-width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    padding:1rem;
+    display:none;
+    flex-direction:column;
+    gap:.9rem;
+    z-index:999;
+  }
+
+  .mobile-nav.active{display:flex}
+
+  .mobile-nav a{
+    font-weight:600;
+    padding:.6rem;
+    border-radius:10px;
+  }
+
+  .mobile-nav a:hover{
+    background:var(--rose-light);
+    color:var(--rose-dark);
+  }
+}
+
+/* ===== SECTION ===== */
+section{padding:3rem 0}
+
+h2{margin-bottom:.4rem}
+
+.section-intro{
+  max-width:560px;
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+/* ===== STATS ===== */
+.stats-grid{
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1.2rem;
+}
+
+.stat-box{
+  background:#fff;
+  padding:1.4rem 1rem;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+
+.stat-box h3{
+  margin:0;
+  font-size:1.8rem;
+  color:var(--rose-dark);
+}
+
+.stat-box p{
+  margin:.4rem 0 0;
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);
+  color:#fff;
+  padding:2rem 0 1.4rem;
+  margin-top:3rem;
+}
+
+.footer-inner{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.footer-links a{color:rgba(255,255,255,.75)}
+
+/* ===== WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(135deg,var(--rose-mid),var(--rose-dark));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:9999;
+}
+
+.whatsapp-float img{
+  width:28px;
+  filter:brightness(0) invert(1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-femme-forward.png" class="brand-logo" alt="Femme Forward Logo">
+      <span>Femme Forward</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#" style="color:var(--rose-dark);">Impact</a></li>
+        <li><a href="episodes.html">Episodes</a></li>
+        <li><a href="guests.html">Guests</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="mobile-nav">
+      <a href="about.html">About</a>
+      <a href="#">Impact</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="guests.html">Guests</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="episodes.html" class="nav-cta">Listen now</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= IMPACT ================= -->
+<section>
+  <div class="container">
+    <h2>Impact in numbers</h2>
+
+    <p class="section-intro">
+      Numbers don’t tell the whole story, but they do show how far women’s voices
+      can travel when we give them the mic — and don’t cut them off.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <h3>500K+</h3>
+        <p>Total views & streams</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>1M+</h3>
+        <p>Monthly audience reach</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>50+</h3>
+        <p>Women voices featured</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>200+</h3>
+        <p>Hours of honest stories</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Femme Forward</strong>
+      <p style="margin:.3rem 0 0; max-width:320px;">
+        A women-led podcast network amplifying stories that deserve more than a soundbite.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="#">Impact</a>
+        <a href="episodes.html">Episodes</a>
+        <a href="guests.html">Guests</a>
+        <a href="community.html">Community</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-meta" style="margin-top:.7rem;">
+        © 2025 Femme Forward. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a
+  href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+</a>
+<!-- ================= JS ================= -->
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const burger=document.querySelector(".menu-toggle");
+  const mobileNav=document.querySelector(".mobile-nav");
+  burger.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+});
+</script>
+
+</body>
+</html>
