@@ -192,11 +192,75 @@ header{
 }
 .slide{display:none}
 .slide.active{display:block}
+/* ===== SLIDER (RESPONSIVE FIX) ===== */
+.ff-slider{
+  padding:3rem 0;
+  background:linear-gradient(
+    180deg,
+    #f7e1df 0%,
+    #ffffff 40%,
+    #ffffff 100%
+  );
+}
+
+.slider-container{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  background:#000; /* fallback background */
+}
+
+/* Aspect ratio wrapper (YouTube-friendly) */
+.slide{
+  display:none;
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  background:#000;
+}
+
+.slide.active{
+  display:block;
+}
+
+/* Image handling */
 .slide img{
   width:100%;
-  height:420px;
-  object-fit:cover;
+  height:100%;
+  object-fit:contain; /* IMPORTANT */
+  background:#000;
 }
+
+/* Overlay stays correct */
+.slide-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.15) 50%,
+    rgba(0,0,0,0)
+  );
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:clamp(1rem, 4vw, 2rem);
+  color:#fff;
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 719px){
+  .ff-slider{
+    padding:2rem 0;
+  }
+  .slide-overlay h2{
+    font-size:1.1rem;
+  }
+  .slide-overlay p{
+    font-size:.9rem;
+  }
+}
+
 .slide-overlay{
   position:absolute;
   inset:0;
@@ -465,12 +529,14 @@ footer{
 
     <!-- Dots -->
     <div class="slider-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+  <span class="dot active"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
 
   </div>
 </section>
@@ -633,4 +699,5 @@ document.getElementById("newsletter-form")?.addEventListener("submit",function(e
 </body>
 
 </html>
+
 
