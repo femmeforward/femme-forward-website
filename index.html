@@ -182,103 +182,362 @@ header{
   color:var(--muted);
 }
 .hero-meta strong{color:var(--rose-dark)}
+/* ===== HERO BACKGROUND SLIDER ===== */
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+
+/* Background image wrapper */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+/* Background images */
+.hero-bg-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;       /* desktop default */
+  object-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease-in-out;
+}
+@media (max-width: 719px){
+  .hero{
+    padding:3rem 0 2.6rem;
+  }
+
+  .hero-bg-slide{
+    object-fit:contain;
+    object-position:center top;
+    transform:scale(1.15);   /* key fix */
+  }
+}
+/* ===== HERO TEXT MOBILE ADJUSTMENT ===== */
+@media (max-width: 719px){
+
+  .hero{
+    padding:2.6rem 0 2.4rem;
+  }
+
+  .hero-copy{
+    max-width:90%;
+  }
+
+  .hero-kicker{
+    font-size:0.65rem;
+    padding:.3rem .7rem;
+    margin-bottom:.7rem;
+  }
+
+  .hero-copy h1{
+    font-size:1.4rem;
+    line-height:1.25;
+    margin-bottom:.6rem;
+  }
+
+  .hero-copy p{
+    font-size:0.85rem;
+    line-height:1.45;
+    margin-bottom:1rem;
+  }
+
+  .hero-actions{
+    gap:.7rem;
+  }
+
+  .btn-primary,
+  .btn-secondary{
+    padding:.55rem 1.1rem;
+    font-size:0.8rem;
+  }
+
+  .hero-meta{
+    font-size:0.7rem;
+    gap:1rem;
+  }
+}
+/* ===== HERO META FINAL MOBILE FIX ===== */
+@media (max-width: 719px){
+
+  .hero-meta{
+    font-size:0.65rem;       /* smaller text */
+    gap:0.6rem;
+    flex-wrap:wrap;         /* allow wrapping */
+    justify-content:center;
+    line-height:1.2;
+  }
+
+  .hero-meta span{
+    white-space:nowrap;     /* prevent awkward word breaks */
+  }
+}
+/* ===== HERO ULTRA-MOBILE COMPRESSION ===== */
+@media (max-width: 719px){
+
+  .hero{
+    padding:2.2rem 0 2.2rem;
+  }
+
+  .hero-copy{
+    max-width:88%;
+  }
+
+  /* Kicker */
+  .hero-kicker{
+    font-size:0.6rem;
+    padding:.25rem .6rem;
+    margin-bottom:.6rem;
+  }
+
+  /* Heading */
+  .hero-copy h1{
+    font-size:1.25rem;
+    line-height:1.22;
+    margin-bottom:.5rem;
+  }
+
+  /* Paragraph */
+  .hero-copy p{
+    font-size:0.8rem;
+    line-height:1.4;
+    margin-bottom:.8rem;
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary{
+    padding:.5rem 1rem;
+    font-size:0.75rem;
+  }
+
+  .hero-actions{
+    gap:.6rem;
+    margin-top:.8rem;
+  }
+
+  /* META — this is the critical fix */
+  .hero-meta{
+    font-size:0.6rem;
+    gap:.5rem;
+    margin-top:.7rem;
+    max-width:240px;        /* HARD CONTAIN */
+    margin-left:auto;
+    margin-right:auto;
+    flex-wrap:wrap;
+    justify-content:center;
+    line-height:1.15;
+  }
+
+  .hero-meta span{
+    white-space:nowrap;
+  }
+}
+@media (max-width:360px){
+  .hero-copy h1{
+    font-size:1.15rem;
+  }
+
+  .hero-meta{
+    max-width:210px;
+  }
+}
+/* ===== HERO OVERLAY POSITION FIX (MOBILE) ===== */
+@media (max-width: 719px){
+
+  .hero-copy{
+    position:relative;
+    top:-28px;          /* MOVE TEXT UP */
+  }
+}
+/* ===== MOBILE HERO → SLIDER GAP FIX ===== */
+@media (max-width: 719px){
+
+  .hero{
+    padding-bottom:1.2rem;   /* reduce bottom space */
+  }
+
+  .ff-slider{
+    padding-top:1.2rem;      /* reduce top space */
+  }
+}
+/* ===== MOBILE HERO → SLIDER GAP FIX ===== */
+@media (max-width: 719px){
+
+  .hero{
+    padding-bottom:1.2rem;   /* reduce bottom space */
+  }
+
+  .ff-slider{
+    padding-top:1.2rem;      /* reduce top space */
+  }
+}
+/* ===== FINAL MOBILE HERO → SLIDER GAP REMOVAL ===== */
+@media (max-width: 719px){
+
+  /* Kill generic section spacing for this transition */
+  .hero{
+    padding-bottom:0.6rem !important;
+    margin-bottom:0 !important;
+  }
+
+  .ff-slider{
+    padding-top:0.6rem !important;
+    margin-top:0 !important;
+  }
+
+  /* Override global section padding */
+  section.ff-slider{
+    padding-top:0.6rem !important;
+  }
+
+  /* Safety: remove any accidental top margin */
+  .slider-container{
+    margin-top:0 !important;
+  }
+}
+
+
+
+/* Active image */
+.hero-bg-slide.active{
+  opacity:1;
+}
+
+/* Soft overlay for readability */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.65),
+    rgba(255,255,255,.9)
+  );
+  z-index:2;
+}
+
+/* Keep hero content above background */
+.hero .container{
+  position:relative;
+  z-index:3;
+}
+/* ===== HERO → SLIDER SUBTLE GRADIENT BLEND ===== */
+@media (max-width: 719px){
+
+  .hero{
+    position:relative;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;                 /* hides 1px seams */
+    height:48px;                 /* subtle blend height */
+    background:linear-gradient(
+      to bottom,
+      rgba(247,225,223,0) 0%,
+      rgba(247,225,223,0.85) 60%,
+      rgba(247,225,223,1) 100%
+    );
+    pointer-events:none;
+    z-index:4;
+  }
+}
+
 
 /* ===== SLIDER SECTION ===== */
+/* ===== SLIDER ===== */
 .ff-slider{
   padding:3rem 0;
-  background:linear-gradient(
-    180deg,
-    #f7e1df 0%,
-    #ffffff 40%,
-    #ffffff 100%
-  );
+  background:linear-gradient(180deg,#f7e1df 0%,#ffffff 40%);
 }
 
 .slider-container{
   max-width:960px;
   margin:0 auto;
+  overflow:hidden;
 }
 
-/* ===== SLIDE ===== */
+/* Sliding row */
+.slider-track{
+  display:flex;
+  transition:transform 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* Each slide */
 .slide{
-  display:none;
+  min-width:100%;
 }
 
-.slide.active{
-  display:block;
-}
-
-/* ===== IMAGE WRAPPER ===== */
+/* Image */
 .slide-image{
   width:100%;
   aspect-ratio:20 / 9; /* matches 1600x720 */
-  overflow:hidden;
-  border-radius:18px;
   background:#000;
+  border-radius:18px;
+  overflow:hidden;
 }
 
 .slide-image img{
   width:100%;
   height:100%;
-  object-fit:contain; /* no zoom, no crop */
+  object-fit:contain;
   display:block;
 }
 
-/* ===== CAPTION BELOW IMAGE ===== */
+/* Caption BELOW image */
 .slide-caption{
-  background:#ffffff;
+  background:#fff;
   padding:0.9rem 1.2rem;
   margin-top:0.4rem;
-  border-radius:0 0 14px 14px;
 }
 
 .slide-caption h2{
   font-size:1rem;
   margin:0;
   font-weight:600;
-  color:var(--charcoal);
+  color:#2f2a2a;
 }
 
 .slide-caption p{
   font-size:0.85rem;
-  margin:0.25rem 0 0;
-  color:var(--muted);
+  margin-top:0.25rem;
+  color:#8a7f7f;
 }
 
-/* ===== DOTS ===== */
+/* Dots */
 .slider-dots{
   display:flex;
   justify-content:center;
   gap:.5rem;
-  margin-top:0.8rem;
+  margin-top:0.9rem;
 }
 
 .dot{
   width:8px;
   height:8px;
-  background:rgba(0,0,0,.25);
+  background:rgba(0,0,0,.3);
   border-radius:50%;
   cursor:pointer;
 }
 
 .dot.active{
-  background:var(--charcoal);
+  background:#2f2a2a;
 }
 
-/* ===== MOBILE TUNING ===== */
+/* Mobile tuning */
 @media (max-width:480px){
-  .slide-caption{
-    padding:0.7rem 0.9rem;
-  }
-
-  .slide-caption h2{
-    font-size:0.9rem;
-  }
-
-  .slide-caption p{
-    font-size:0.75rem;
-  }
+  .slide-caption h2{font-size:0.9rem}
+  .slide-caption p{font-size:0.75rem}
 }
+
 /* ===== SECTIONS ===== */
 section{padding:3rem 0}
 .section-intro{
@@ -352,17 +611,112 @@ section{padding:3rem 0}
 }
 
 /* ===== FOOTER ===== */
-footer{
+.site-footer{
   background:var(--charcoal);
-  color:#fff;
-  padding:2rem 0 1.4rem;
+  color:#ffffff;
+  padding:2.5rem 0 1.2rem;
 }
-.footer-links{
+
+.footer-grid{
+  display:grid;
+  gap:2rem;
+}
+
+.footer-brand h3{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:600;
+}
+
+.footer-brand p{
+  margin-top:0.4rem;
+  max-width:360px;
+  font-size:0.9rem;
+  line-height:1.5;
+  color:rgba(255,255,255,.75);
+}
+
+.footer-right{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.footer-nav{
   display:flex;
   flex-wrap:wrap;
-  gap:1rem;
+  gap:1.2rem;
 }
-.footer-links a{color:rgba(255,255,255,.75)}
+
+.footer-nav a{
+  font-size:0.9rem;
+  color:rgba(255,255,255,.75);
+}
+
+.footer-nav a:hover{
+  color:#ffffff;
+}
+
+/* Social links */
+.footer-social{
+  display:flex;
+  gap:1.2rem;
+}
+
+.footer-social a{
+  font-size:0.85rem;
+  font-weight:500;
+  color:rgba(255,255,255,.6);
+}
+
+.footer-social a:hover{
+  color:#ffffff;
+}
+
+/* Bottom bar */
+.footer-bottom{
+  margin-top:2rem;
+  padding-top:1rem;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:0.8rem;
+  color:rgba(255,255,255,.6);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+/* Designed by credit */
+.footer-credit{
+  font-size:0.75rem;
+  color:rgba(255,255,255,.45);
+  white-space:nowrap;
+}
+
+/* Mobile: center neatly */
+@media (max-width:480px){
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+    gap:0.4rem;
+  }
+}
+/* Desktop layout */
+@media (min-width:768px){
+  .footer-grid{
+    grid-template-columns:1.2fr 1fr;
+    align-items:start;
+  }
+}
+
+/* Mobile centering */
+@media (max-width:480px){
+  .footer-right{
+    align-items:flex-start;
+  }
+}
+
 
 /* ===== WHATSAPP ===== */
 .whatsapp-float{
@@ -428,14 +782,27 @@ footer{
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div>
-    <a href="#" class="nav-cta">Listen now</a>
-    <button class="menu-toggle"><span></span><span></span><span></span></button>
-  </div>
+<div class="nav-right">
+      <a href="episodes.html" class="nav-cta">Listen now</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 </div>
 </header>
 
-<section class="hero">
+<section class="hero hero-slider">
+
+  <!-- Hero background slider -->
+  <div class="hero-bg">
+    <img src="hero1.jpg" alt="" class="hero-bg-slide active">
+    <img src="hero2.jpg" alt="" class="hero-bg-slide">
+    <img src="hero3.jpg" alt="" class="hero-bg-slide">
+    <img src="hero4.jpg" alt="" class="hero-bg-slide">
+    <img src="hero5.jpg" alt="" class="hero-bg-slide">
+    <img src="hero6.jpg" alt="" class="hero-bg-slide">
+  </div>
+
 <div class="container">
   <div class="hero-copy">
     <div class="hero-kicker">Women-Led • Story-Driven • Real</div>
@@ -462,70 +829,72 @@ footer{
 <section class="ff-slider">
   <div class="slider-container">
 
-    <div class="slide active">
-      <div class="slide-image">
-        <img src="slide1.jpg" alt="Femme Forward – Women-led conversations">
-      </div>
-      <div class="slide-caption">
-        <h2>Women-led conversations</h2>
-        <p>Stories told without shrinking.</p>
-      </div>
-    </div>
+    <div class="slider-track">
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="slide2.jpg" alt="Femme Forward – Unfiltered voices">
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide1.jpg" alt="Women-led conversations">
+        </div>
+        <div class="slide-caption">
+          <h2>Women-led conversations</h2>
+          <p>Stories told without shrinking.</p>
+        </div>
       </div>
-      <div class="slide-caption">
-        <h2>Unfiltered voices</h2>
-        <p>Honesty over performance.</p>
-      </div>
-    </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="slide3.jpg" alt="Femme Forward – Power and leadership">
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide2.jpg" alt="Unfiltered voices">
+        </div>
+        <div class="slide-caption">
+          <h2>Unfiltered voices</h2>
+          <p>Honesty over performance.</p>
+        </div>
       </div>
-      <div class="slide-caption">
-        <h2>Power & leadership</h2>
-        <p>From politics to purpose.</p>
-      </div>
-    </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="slide4.jpg" alt="Femme Forward – Culture and identity">
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide3.jpg" alt="Power and leadership">
+        </div>
+        <div class="slide-caption">
+          <h2>Power & leadership</h2>
+          <p>From politics to purpose.</p>
+        </div>
       </div>
-      <div class="slide-caption">
-        <h2>Culture & identity</h2>
-        <p>Stories that shape who we are.</p>
-      </div>
-    </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="slide5.jpg" alt="Femme Forward – Impact beyond the mic">
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide4.jpg" alt="Culture and identity">
+        </div>
+        <div class="slide-caption">
+          <h2>Culture & identity</h2>
+          <p>Stories that shape who we are.</p>
+        </div>
       </div>
-      <div class="slide-caption">
-        <h2>Impact beyond the mic</h2>
-        <p>A movement, not just a podcast.</p>
-      </div>
-    </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="slide6.jpg" alt="Femme Forward – Truth over comfort">
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide5.jpg" alt="Impact beyond the mic">
+        </div>
+        <div class="slide-caption">
+          <h2>Impact beyond the mic</h2>
+          <p>A movement, not just a podcast.</p>
+        </div>
       </div>
-      <div class="slide-caption">
-        <h2>Truth over comfort</h2>
-        <p>Conversations that ask hard questions.</p>
-      </div>
-    </div>
 
+      <div class="slide">
+        <div class="slide-image">
+          <img src="slide6.jpg" alt="Truth over comfort">
+        </div>
+        <div class="slide-caption">
+          <h2>Truth over comfort</h2>
+          <p>Conversations that ask hard questions.</p>
+        </div>
+      </div>
 
     <!-- Dots -->
     <div class="slider-dots">
       <span class="dot active"></span>
+      <span class="dot"></span>
       <span class="dot"></span>
       <span class="dot"></span>
       <span class="dot"></span>
@@ -606,32 +975,50 @@ footer{
     </div>
   </div>
 </section>
+
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-inner">
-    <div>
-      <strong>Femme Forward</strong>
-      <p style="margin:0.3rem 0 0; max-width:320px;">
-        A women-led podcast network amplifying stories that deserve more than a soundbite.
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <h3>Femme Forward</h3>
+      <p>
+        A women-led podcast network amplifying stories that deserve
+        more than a soundbite.
       </p>
     </div>
 
-    <div>
-     <div class="footer-links">
-       <a href="about.html">About</a>
-       <a href="impact.html">Impact</a>
-       <a href="episodes.html">Episodes</a>
-       <a href="guests.html">Guests</a>
-       <a href="community.html">Community</a>
-       <a href="contact.html">Contact</a>
-      </div>
+    <div class="footer-right">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="episodes.html">Episodes</a>
+        <a href="guests.html">Guests</a>
+        <a href="community.html">Community</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-      <div class="footer-meta" style="margin-top:0.7rem;">
-        © 2025 Femme Forward. All rights reserved.
+      <div class="footer-social" aria-label="Social media links">
+        <a href="https://open.spotify.com/show/316Sko0FoxMVM10O647upd" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://www.youtube.com/@FemmeForwardOfficial" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/femmeforward___/?hl=en" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
+
   </div>
+
+  <div class="footer-bottom">
+  <span>© 2025 Femme Forward. All rights reserved.</span>
+  <span class="footer-credit">
+    Designed by 
+    <a href="https://www.instagram.com/harshitgoyal7977" target="_blank" rel="noopener">
+      Harshit Goyal
+    </a>
+  </span>
+</div>
+
 </footer>
+
 <!-- WhatsApp Floating Button -->
 <a
   href="https://wa.me/918979073918?text=Hi%20Femme%20Forward,%20I’d%20love%20to%20connect%20with%20you."
@@ -653,33 +1040,30 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".slider-track");
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+  let current = 0;
 
-    /* ===== Slider ===== */
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
-    let current = 0;
+  function goToSlide(index){
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
 
-    function showSlide(index) {
-      slides.forEach(s => s.classList.remove("active"));
-      dots.forEach(d => d.classList.remove("active"));
-      slides[index].classList.add("active");
-      dots[index].classList.add("active");
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        current = i;
-        showSlide(current);
-      });
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      current = i;
+      goToSlide(current);
     });
-
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }, 5000);
-
   });
+
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    goToSlide(current);
+  }, 5000);
+});
 </script>
 
 <script>
@@ -688,6 +1072,18 @@ document.getElementById("newsletter-form")?.addEventListener("submit",function(e
   emailjs.send("service_l774319","template_0crn5g5",{
     email:this.email.value
   }).then(()=>alert("Subscribed successfully"));
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".hero-bg-slide");
+  let current = 0;
+
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 5000);
 });
 </script>
 
