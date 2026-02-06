@@ -254,19 +254,112 @@ h2{font-size:1.7rem;margin-bottom:.4rem}
 }
 
 /* ===== FOOTER ===== */
-footer{
+.site-footer{
   background:var(--charcoal);
-  color:#fff;
-  padding:2rem 0 1.4rem;
+  color:#ffffff;
+  padding:2.5rem 0 1.2rem;
 }
 
-.footer-links{
+.footer-grid{
+  display:grid;
+  gap:2rem;
+}
+
+.footer-brand h3{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:600;
+}
+
+.footer-brand p{
+  margin-top:0.4rem;
+  max-width:360px;
+  font-size:0.9rem;
+  line-height:1.5;
+  color:rgba(255,255,255,.75);
+}
+
+.footer-right{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.footer-nav{
   display:flex;
   flex-wrap:wrap;
-  gap:1rem;
+  gap:1.2rem;
 }
 
-.footer-links a{color:rgba(255,255,255,.75)}
+.footer-nav a{
+  font-size:0.9rem;
+  color:rgba(255,255,255,.75);
+}
+
+.footer-nav a:hover{
+  color:#ffffff;
+}
+
+/* Social links */
+.footer-social{
+  display:flex;
+  gap:1.2rem;
+}
+
+.footer-social a{
+  font-size:0.85rem;
+  font-weight:500;
+  color:rgba(255,255,255,.6);
+}
+
+.footer-social a:hover{
+  color:#ffffff;
+}
+
+/* Bottom bar */
+.footer-bottom{
+  margin-top:2rem;
+  padding-top:1rem;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:0.8rem;
+  color:rgba(255,255,255,.6);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+/* Designed by credit */
+.footer-credit{
+  font-size:0.75rem;
+  color:rgba(255,255,255,.45);
+  white-space:nowrap;
+}
+
+/* Mobile: center neatly */
+@media (max-width:480px){
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+    gap:0.4rem;
+  }
+}
+/* Desktop layout */
+@media (min-width:768px){
+  .footer-grid{
+    grid-template-columns:1.2fr 1fr;
+    align-items:start;
+  }
+}
+
+/* Mobile centering */
+@media (max-width:480px){
+  .footer-right{
+    align-items:flex-start;
+  }
+}
+
 
 /* ===== WHATSAPP ===== */
 .whatsapp-float{
@@ -296,7 +389,7 @@ footer{
 <header>
   <div class="container nav">
     <a href="index.html" class="brand">
-      <img src="logo-femme-forward.png" class="brand-logo">
+      <img src="assets/logo-femme-forward.png" class="brand-logo">
       <span>Femme Forward</span>
     </a>
 
@@ -391,22 +484,16 @@ footer{
           </p>
 
           <p class="founder-bio-full">
-            Smriti Agarwal is a storyteller and brand strategist with
-            an MSc in Marketing (Northumbria University, UK)
-            and a BA (Hons) in English (Delhi University).
+            Smriti Agarwal is an entrepreneur and the founder of Femme Forward — a platform and podcast dedicated to women’s empowerment, storytelling, and community conversations. 🌟 She hosts conversations with women leaders, changemakers, artists, activists and experts on topics ranging from self-love and leadership to safety, identity and redefining success.
           </p>
-
+          <div class="founder-meta-list">
+            <span>Smriti started Femme Forward to break silos around issues women often don’t talk about and to give space where women’s voices are heard, celebrated, and acknowledged. Initially, she wasn’t sure people would open up — but the response has shown strong support from women and men alike.</span>
+          </div>
           <div class="founder-quote">
             “To spark a movement where women's stories inspire confidence and courage.”
             <span>— Smriti Agarwal</span>
           </div>
 
-          <div class="founder-meta-list">
-            <span>MSc Marketing (UK)</span>
-            <span>BA (Hons) English</span>
-            <span>Brand Strategist</span>
-            <span>Host, Femme Forward</span>
-          </div>
         </div>
       </div>
     </div>
@@ -414,20 +501,49 @@ footer{
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-inner">
-    <strong>Femme Forward</strong>
-    <div class="footer-links">
-      <a href="#">About</a>
-      <a href="#">Impact</a>
-      <a href="#">Episodes</a>
-      <a href="#">Guests</a>
-      <a href="#">Community</a>
-      <a href="#">Contact</a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <h3>Femme Forward</h3>
+      <p>
+        A women-led podcast network amplifying stories that deserve
+        more than a soundbite.
+      </p>
     </div>
-    <div style="font-size:.85rem;opacity:.7;">© 2025 Femme Forward</div>
+
+    <div class="footer-right">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="episodes.html">Episodes</a>
+        <a href="guests.html">Guests</a>
+        <a href="community.html">Community</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+     <div class="footer-social" aria-label="Social media links">
+        <a href="https://open.spotify.com/show/316Sko0FoxMVM10O647upd" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://www.youtube.com/@FemmeForwardOfficial" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/femmeforward___/?hl=en" target="_blank" rel="noopener">Instagram</a>
+      </div>
+
+    </div>
+
   </div>
+
+  <div class="footer-bottom">
+  <span>© 2025 Femme Forward. All rights reserved.</span>
+  <span class="footer-credit">
+    Designed by 
+    <a href="https://www.instagram.com/harshitgoyal7977" target="_blank" rel="noopener">
+      Harshit Goyal
+    </a>
+  </span>
+</div>
+
 </footer>
+
 
 <!-- WhatsApp Floating Button -->
 <a
@@ -453,5 +569,4 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 </body>
 </html>
-
 
